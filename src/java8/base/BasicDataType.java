@@ -12,8 +12,8 @@ class BasicDataType {
         Integer i3=1,i4=1;
         int i5=127;
         Integer i6 = 127;
-        int i7=12119;
-        Integer i8 = Integer.valueOf(12119);
+        int i7=128;
+        Integer i8 = Integer.valueOf(128);
 
         System.out.println("i1=i2 is "+(i1==i2));//true
         System.out.println("i3=i4 is "+(i3==i4));//true
