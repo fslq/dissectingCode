@@ -7,7 +7,7 @@ public class OwnThreadFactory implements ThreadFactory {
     // 自定义线程名称
     private String threadNamePrefix = "Own-Thread-DefaultName-";
     // 生成（工厂）线程序号
-    private static AtomicInteger threadNum = new AtomicInteger(1);
+    static AtomicInteger threadNum = new AtomicInteger(1);
     public OwnThreadFactory(String threadNamePrefix){
         this.threadNamePrefix=threadNamePrefix;
     }
