@@ -18,6 +18,10 @@ public class MutiTaskTest {
                         e.printStackTrace();
                     }
                     System.out.println("任务"+ii+"执行线程："+Thread.currentThread().getName());
+                    //模拟异常
+                    if(ii==3){
+                       int b= ii/0;
+                    }
                     return "任务"+ii+"执行完成";
                 },OwnThreadPool.getInstance())
             );
@@ -25,7 +29,10 @@ public class MutiTaskTest {
         
         //执行任务
         CompletableFuture<Void> allOf = CompletableFuture.allOf(tasks.toArray(new CompletableFuture[0]));
-        allOf.get();
+        allOf.whenComplete((res,ex)->{
+            System.out.println("当前执行的是："+res);
+            System.out.println("异常打印线程："+Thread.currentThread().getName()+" 异常："+ex.toString());
+        });
         System.out.println("所有任务执行完成");
         tasks.forEach(t->{
             try {
