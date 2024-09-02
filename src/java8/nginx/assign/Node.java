@@ -1,38 +1,39 @@
 package java8.nginx.assign;
 
 /**
- * String ip：负载IP
+ * String channel：负载渠道
  * final Integer weight：权重，保存配置的权重
  * Integer effectiveWeight：有效权重，轮询的过程权重可能变化
  * Integer currentWeight：当前权重，比对该值大小获取节点
  *   第一次加权轮询时：currentWeight = weight = effectiveWeight
  *   后面每次加权轮询时：currentWeight 的值都会不断变化，其他权重不变
- */public class Node implements Comparable<Node>{
-    private String ip;
+ */
+ public class Node implements Comparable<Node>{
+    private String channel;
     private final Integer weight;
     private Integer effectiveWeight;
     private Integer currentWeight;
 
-    public Node(String ip,Integer weight){
-        this.ip = ip;
+    public Node(String channel,Integer weight){
+        this.channel = channel;
         this.weight = weight;
         this.effectiveWeight = weight;
         this.currentWeight = weight;
     }
 
-    public Node(String ip, Integer weight, Integer effectiveWeight, Integer currentWeight) {
-        this.ip = ip;
+    public Node(String channel, Integer weight, Integer effectiveWeight, Integer currentWeight) {
+        this.channel = channel;
         this.weight = weight;
         this.effectiveWeight = effectiveWeight;
         this.currentWeight = currentWeight;
     }
 
-    public String getIp() {
-        return ip;
+    public String getChannel() {
+        return channel;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     public Integer getWeight() {
@@ -62,7 +63,7 @@ package java8.nginx.assign;
 
     @Override
     public String toString() {
-        return "{ip='" + ip + "', weight=" + weight + ", effectiveWeight=" + effectiveWeight + ", currentWeight=" + currentWeight + "}";
+        return "{channel='" + channel + "', weight=" + weight + ", effectiveWeight=" + effectiveWeight + ", currentWeight=" + currentWeight + "}";
     }
 }
 

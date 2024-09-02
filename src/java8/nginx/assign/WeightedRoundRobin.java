@@ -12,9 +12,9 @@ import java.util.List;
     private static Integer totalWeight = 0;
     // 准备模拟数据
     static {
-        nodes.add(new Node("192.168.1.101",1));
-        nodes.add(new Node("192.168.1.102",3));
-        nodes.add(new Node("192.168.1.103",2));
+        nodes.add(new Node("zhongtong",1));
+        nodes.add(new Node("diankongyun",3));
+        nodes.add(new Node("tanma",2));
         nodes.forEach(node -> totalWeight += node.getEffectiveWeight());
     }
 
@@ -43,7 +43,7 @@ import java.util.List;
                     tempNodeOfMaxWeight = tempNodeOfMaxWeight.compareTo(node) > 0 ? tempNodeOfMaxWeight : node;
             }
             // 必须new个新的节点实例来保存信息，否则引用指向同一个堆实例，后面的set操作将会修改节点信息
-            nodeOfMaxWeight = new Node(tempNodeOfMaxWeight.getIp(),tempNodeOfMaxWeight.getWeight(),tempNodeOfMaxWeight.getEffectiveWeight(),tempNodeOfMaxWeight.getCurrentWeight());
+            nodeOfMaxWeight = new Node(tempNodeOfMaxWeight.getChannel(),tempNodeOfMaxWeight.getWeight(),tempNodeOfMaxWeight.getEffectiveWeight(),tempNodeOfMaxWeight.getCurrentWeight());
 
             // 调整当前权重比：按权重（effectiveWeight）的比例进行调整，确保请求分发合理。
             tempNodeOfMaxWeight.setCurrentWeight(tempNodeOfMaxWeight.getCurrentWeight() - totalWeight);
